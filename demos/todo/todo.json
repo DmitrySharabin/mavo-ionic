@@ -1,0 +1,10 @@
+{
+	"task": [
+		{ "title": "Taste JavaScript", "done": true },
+		{ "title": "Code furiously", "done": true },
+		{ "title": "Promote Mavo", "done": false },
+		{ "title": "Give talks", "done": false },
+		{ "title": "Write tutorials", "done": true },
+		{ "title": "Have a life!", "done": false }
+	]
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+
+		<!-- Mavo -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mavo/0.2.0/mavo.es5.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/mavo/0.2.0/mavo.min.css"
+		/>
+
+		<!-- Mavo plugin for Ionic -->
+		<script src="../../src/mavo-ionic.js"></script>
+
+		<title>To-Do List</title>
+	</head>
+	<body>
+		<ion-app
+			mv-app="todo"
+			mv-mode="read"
+			mv-storage="local"
+			mv-autosave
+			mv-init="todo.json"
+			class="ion-padding"
+		>
+			<ion-header class="ion-no-border">
+				<ion-toolbar>
+					<ion-title size="large">Todos</ion-title>
+				</ion-toolbar>
+
+				<ion-toolbar style="[if(count(task) = 0, 'opacity: 0;')]">
+					<ion-segment property="activeFilter" value="all" mv-storage="none">
+						<ion-segment-button value="all">
+							<ion-label>All</ion-label>
+						</ion-segment-button>
+						<ion-segment-button value="active">
+							<ion-label>Active</ion-label>
+						</ion-segment-button>
+						<ion-segment-button value="completed">
+							<ion-label>Completed</ion-label>
+						</ion-segment-button>
+					</ion-segment>
+				</ion-toolbar>
+			</ion-header>
+
+			<ion-content>
+				<meta property="tasksDone" content="[count(task where done)]" />
+				<meta property="tasksLeft" content="[count(task where !done)]" />
+
+				<form
+					mv-action="if(newTask != '', add(newTask, task) & set(newTask, ''))"
+				>
+					<ion-item lines="full">
+						<ion-checkbox
+							property="toggleAll"
+							checked="[tasksLeft = 0]"
+							mv-action="set(done, toggleAll)"
+							class="ion-margin-end"
+							style="[if(count(task) = 0, 'opacity: 0;')]"
+						></ion-checkbox>
+
+						<ion-input
+							property="newTask"
+							clear-input
+							autocapitalize
+							placeholder="What needs to be done?"
+						></ion-input>
+					</ion-item>
+				</form>
+
+				<ion-list class="ion-margin-top">
+					<ion-item-sliding
+						mv-multiple="task"
+						hidden="[(done and activeFilter = 'active') or (!done and activeFilter = 'completed')]"
+					>
+						<ion-item lines="inset">
+							<ion-checkbox
+								property="done"
+								class="ion-margin-end"
+							></ion-checkbox>
+							<ion-input
+								property="title"
+								placeholder="Do stuff"
+								clear-input
+								autocapitalize
+							></ion-input>
+						</ion-item>
+
+						<ion-item-options side="end">
+							<ion-item-option color="danger" mv-action="delete(task)">
+								<ion-icon slot="icon-only" name="trash"></ion-icon>
+							</ion-item-option>
+						</ion-item-options>
+					</ion-item-sliding>
+				</ion-list>
+			</ion-content>
+
+			<ion-footer hidden="[count(task) = 0]">
+				<ion-toolbar>
+					<ion-text class="ion-text-left" color="medium">
+						<strong mv-value="tasksLeft">0</strong>
+						[if(tasksLeft = 1, 'item', 'items')] left
+					</ion-text>
+
+					<ion-buttons slot="primary">
+						<ion-button
+							fill="clear"
+							color="medium"
+							hidden="[tasksDone = 0]"
+							mv-action="delete(task where done)"
+						>
+							Clear completed
+						</ion-button>
+					</ion-buttons>
+				</ion-toolbar>
+			</ion-footer>
+		</ion-app>
+	</body>
+</html>

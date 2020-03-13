@@ -1,0 +1,25 @@
+[property="newTask"] {
+	--placeholder-font-style: italic;
+}
+
+ion-checkbox[checked] {
+	--checkmark-width: 2;
+	--checkmark-color: #222428;
+	--background-checked: white;
+	--border-color-checked: #c5c5c5;
+}
+
+[property="done"][checked] {
+	--checkmark-color: #5cc2af;
+}
+
+[property="done"][checked] + [property="title"]:not(.has-focus) {
+	--color: #989aa2;
+	text-decoration: line-through;
+}
+
+.mv-ui.mv-add.mv-add-task,
+.mv-ui.mv-message.mv-deleted,
+.mv-ui.mv-item-bar {
+	display: none;
+}

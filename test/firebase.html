@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Ionic Tests</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/mavo/0.2.0/mavo.min.css"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mavo/0.2.0/mavo.min.js"></script>
+		<script src="test.js"></script>
+		<script src="../src/mavo-ionic.js"></script>
+		<style>
+			[data-test^="test"] td + td {
+				white-space: pre-line;
+			}
+
+			[data-test^="test"] td:first-of-type,
+			[data-test^="test"] th:first-of-type {
+				word-wrap: break-word;
+				flex: none;
+				width: 20%;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Ionic Tests</h1>
+	</body>
+</html>
