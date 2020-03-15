@@ -39,7 +39,7 @@
 	Mavo.Elements.register({
 		"ion-input": {
 			extend: "formControl",
-			selector: "ion-input",
+			selector: "ion-input, ion-searchbar",
 			changeEvents: "ionChange ionInput",
 			init: () => {}
 		},
