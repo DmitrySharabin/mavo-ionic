@@ -69,7 +69,17 @@ gulp.task("minify-es5", function() {
 		.pipe(gulp.dest("dist"));
 });
 
+function css(dest = ".") {
+	gulp.src("src/mavo-ionic.css").pipe(gulp.dest(dest));
+}
+
+gulp.task("copyCSS", function(cb) {
+	css("dist");
+	cb();
+});
+
 gulp.task("default", function() {
+	css();
 	return gulp
 		.src("src/mavo-ionic.js")
 		.pipe(
@@ -96,5 +106,6 @@ exports.build = gulp.parallel(
 	"inject-version",
 	"transpile",
 	"minify",
-	"minify-es5"
+	"minify-es5",
+	"copyCSS"
 );
