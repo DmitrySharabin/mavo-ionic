@@ -44,6 +44,12 @@
 			init: () => {}
 		},
 
+		"ion-textarea": {
+			extend: "formControl",
+			selector: "ion-textarea",
+			changeEvents: "ionChange ionInput"
+		},
+
 		"ion-checkbox": {
 			extend: "checkbox",
 			selector: "ion-checkbox",
