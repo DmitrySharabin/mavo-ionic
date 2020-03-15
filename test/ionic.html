@@ -235,6 +235,93 @@
 			</table>
 		</section>
 
+		<section>
+			<h1>Numbers</h1>
+			<table class="reftest">
+				<tr>
+					<td mv-app>
+						<ion-label property="prop1" datatype="number">0</ion-label>
+						<ion-label property="prop2" datatype="number">1</ion-label>
+						<ion-label property="prop3" datatype="number">-1</ion-label>
+					</td>
+					<td>
+						0 1 -1
+					</td>
+				</tr>
+			</table>
+		</section>
+
+		<section>
+			<h1>Booleans</h1>
+
+			<p>For the last one, edit and check it.</p>
+
+			<table class="reftest">
+				<tr>
+					<td mv-app="booleans">
+						<ion-label property="prop1" datatype="boolean">Foo bar</ion-label>
+						[prop1]
+					</td>
+					<td>false</td>
+				</tr>
+				<tr title="With custom attribute">
+					<td mv-app="booleans">
+						<ion-label
+							property="prop1"
+							datatype="boolean"
+							mv-attribute="data-foo"
+						>
+							Foo bar
+						</ion-label>
+						[prop1]
+					</td>
+					<td>Foo bar false</td>
+				</tr>
+				<tr title="Via checkbox editor">
+					<td mv-app="booleans">
+						<ion-label property="prop1">
+							Foo bar
+							<input type="checkbox" checked />
+						</ion-label>
+						[prop1]
+					</td>
+					<td>
+						Foo bar true
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<pre id="boolean-data">
+{
+	"prop1": false
+}
+</pre
+						>
+					</td>
+					<td>
+						<script>
+							document.write($$("td pre").pop().outerHTML);
+						</script>
+					</td>
+				</tr>
+				<tr
+					title="Via render"
+					class="interactive"
+					data-click=".mv-edit wait 2s after mv-load"
+				>
+					<td mv-app="booleans" mv-storage="#boolean-data">
+						<ion-label property="prop1">
+							Foo bar
+						</ion-label>
+						[prop1]
+					</td>
+					<td>
+						Foo bar true
+					</td>
+				</tr>
+			</table>
+		</section>
+
 		<section mv-app="blocks" class="mv-autoedit">
 			<h1>Block elements</h1>
 
