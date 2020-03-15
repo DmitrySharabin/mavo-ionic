@@ -31,8 +31,17 @@
 			}),
 
 			$.load(ionCssURL)
-		])
+		]),
+
+		dependencies: ["mavo-ionic.css"]
 	});
 
-	Mavo.Elements.register({});
+	Mavo.Elements.register({
+		"ion-input": {
+			extend: "formControl",
+			selector: "ion-input",
+			changeEvents: "ionChange ionInput",
+			init: () => {}
+		}
+	});
 })(Bliss, Bliss.$$);

@@ -1,0 +1,3 @@
+ion-input[property][mv-mode="edit"] {
+	box-shadow: none !important;
+}
