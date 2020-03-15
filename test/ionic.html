@@ -89,6 +89,65 @@
 			</table>
 		</section>
 
+		<section mv-app="radio">
+			<h1>Radio buttons, get</h1>
+
+			<table class="reftest">
+				<tr title="Basic radio buttons">
+					<td>
+						<ion-radio-group property="radio1" value="b">
+							<ion-item>
+								<ion-label>a</ion-label>
+								<ion-radio value="a"></ion-radio>
+							</ion-item>
+
+							<ion-item>
+								<ion-label>b</ion-label>
+								<ion-radio value="b"></ion-radio>
+							</ion-item>
+						</ion-radio-group>
+					</td>
+					<td>[radio1]</td>
+					<td>b</td>
+				</tr>
+				<tr title="Nullable radio buttons">
+					<td>
+						<ion-radio-group property="radio2">
+							<ion-item>
+								<ion-label>a</ion-label>
+								<ion-radio value="a"></ion-radio>
+							</ion-item>
+
+							<ion-item>
+								<ion-label>b</ion-label>
+								<ion-radio value="b"></ion-radio>
+							</ion-item>
+						</ion-radio-group>
+					</td>
+					<td>"[radio2]"</td>
+					<td>""</td>
+				</tr>
+				<tr title="Radio buttons with dynamic value" class="interactive">
+					<td>
+						<input type="checkbox" property="changeRadio" />
+						<ion-radio-group property="radio3" value="d">
+							<ion-item>
+								<ion-label>a</ion-label>
+								<ion-radio value="[if(changeRadio, 'a', 'c')]"></ion-radio>
+							</ion-item>
+
+							<ion-item>
+								<ion-label>b</ion-label>
+								<ion-radio value="[if(changeRadio, 'b', 'd')]"></ion-radio>
+							</ion-item>
+						</ion-radio-group>
+					</td>
+					<td>[radio3]</td>
+					<td>d</td>
+				</tr>
+			</table>
+		</section>
+
 		<section mv-app="formset">
 			<h1>Form values, set</h1>
 			<script>

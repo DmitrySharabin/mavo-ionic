@@ -57,6 +57,12 @@
 			init: () => {}
 		},
 
+		"ion-radio-group": {
+			extend: "formControl",
+			selector: "ion-radio-group",
+			changeEvents: "ionChange"
+		},
+
 		"ion-segment": {
 			extend: "formControl",
 			selector: "ion-segment",

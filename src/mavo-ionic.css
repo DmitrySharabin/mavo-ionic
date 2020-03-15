@@ -1,6 +1,7 @@
 ion-input[property][mv-mode="edit"],
 ion-checkbox[property][mv-mode="edit"],
 ion-segment[property][mv-mode="edit"],
-ion-textarea[property][mv-mode="edit"] {
+ion-textarea[property][mv-mode="edit"],
+ion-radio-group[property][mv-mode="edit"] {
 	box-shadow: none !important;
 }
