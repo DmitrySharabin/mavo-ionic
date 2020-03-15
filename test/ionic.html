@@ -26,5 +26,144 @@
 	</head>
 	<body>
 		<h1>Ionic Tests</h1>
+
+		<section mv-app="exposed">
+			<h1>Form values, get</h1>
+
+			<table class="reftest">
+				<tr>
+					<td>
+						<ion-input property="name" value="Dmitry Sharabin"></ion-input>
+					</td>
+					<td>[name]</td>
+					<td>Dmitry Sharabin</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-input type="number" property="number" value="10"></ion-input>
+					</td>
+					<td>[number]</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-checkbox property="checktrue" checked="true"></ion-checkbox>
+					</td>
+					<td>[checktrue]</td>
+					<td>true</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-checkbox property="checkfalse"></ion-checkbox>
+					</td>
+					<td>[checkfalse]</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td><ion-textarea property="bio" value="Foo Bar"></ion-textarea></td>
+					<td>[bio]</td>
+					<td>Foo Bar</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-segment property="segmentwithoutvalue">
+							<ion-segment-button value="Foo">Foo</ion-segment-button>
+							<ion-segment-button value="Bar">Bar</ion-segment-button>
+							<ion-segment-button value="Baz">Baz</ion-segment-button>
+						</ion-segment>
+					</td>
+					<td>[segmentwithoutvalue]</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-segment property="segmentwithvalue" value="Baz">
+							<ion-segment-button value="Foo">Foo</ion-segment-button>
+							<ion-segment-button value="Bar">Bar</ion-segment-button>
+							<ion-segment-button value="Baz">Baz</ion-segment-button>
+						</ion-segment>
+					</td>
+					<td>[segmentwithvalue]</td>
+					<td>Baz</td>
+				</tr>
+			</table>
+		</section>
+
+		<section mv-app="formset">
+			<h1>Form values, set</h1>
+			<script>
+				function testFormGet(script) {
+					let td = script.parentNode;
+					let tr = td.parentNode;
+
+					td.previousElementSibling.addEventListener(
+						"mv-change",
+						Mavo.rr(function(evt) {
+							requestAnimationFrame(function() {
+								let controls = $$("ion-input", tr);
+								td.textContent = controls
+									.map(i => i.getAttribute("value"))
+									.join(" ");
+							});
+						})
+					);
+				}
+			</script>
+			<table class="reftest">
+				<tr>
+					<td>
+						<ion-input property="foo1" value="['Dmitry Sharabin']"></ion-input>
+					</td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>Dmitry Sharabin</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-input
+							property="foo2"
+							type="number"
+							value="[5 + 5]"
+						></ion-input>
+					</td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>10</td>
+				</tr>
+				<tr title="Via mv-value on parent">
+					<td id="with-mv-value">
+						<div
+							property="foo3"
+							mv-multiple
+							mv-value="[
+								{max: 800, value: 750},
+								{max: 900}
+							]"
+						>
+							<ion-input
+								property="value"
+								type="number"
+								mv-default="[900 / 2]"
+							></ion-input>
+							[value]
+						</div>
+					</td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>
+						750 450
+					</td>
+				</tr>
+			</table>
+		</section>
 	</body>
 </html>
