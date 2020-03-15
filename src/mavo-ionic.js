@@ -49,6 +49,12 @@
 			selector: "ion-checkbox",
 			changeEvents: "ionChange",
 			init: () => {}
+		},
+
+		"ion-segment": {
+			extend: "formControl",
+			selector: "ion-segment",
+			changeEvents: "ionChange"
 		}
 	});
 })(Bliss, Bliss.$$);
