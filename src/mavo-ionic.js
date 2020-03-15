@@ -42,6 +42,13 @@
 			selector: "ion-input",
 			changeEvents: "ionChange ionInput",
 			init: () => {}
+		},
+
+		"ion-checkbox": {
+			extend: "checkbox",
+			selector: "ion-checkbox",
+			changeEvents: "ionChange",
+			init: () => {}
 		}
 	});
 })(Bliss, Bliss.$$);

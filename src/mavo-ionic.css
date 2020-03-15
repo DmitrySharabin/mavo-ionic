@@ -1,3 +1,4 @@
-ion-input[property][mv-mode="edit"] {
+ion-input[property][mv-mode="edit"],
+ion-checkbox[property][mv-mode="edit"] {
 	box-shadow: none !important;
 }
