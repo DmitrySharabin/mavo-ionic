@@ -90,6 +90,11 @@
 		"ion-img": {
 			extend: "media",
 			selector: "ion-img"
+		},
+
+		"ion-counter": {
+			extend: "counter",
+			selector: "ion-button, ion-fab-button"
 		}
 	});
 })(Bliss, Bliss.$$);

@@ -4,6 +4,8 @@ ion-toggle[property][mv-mode="edit"],
 ion-segment[property][mv-mode="edit"],
 ion-textarea[property][mv-mode="edit"],
 ion-radio-group[property][mv-mode="edit"],
-ion-select[property][mv-mode="edit"] {
+ion-select[property][mv-mode="edit"],
+ion-button[property][mv-mode="edit"],
+ion-fab-button[property][mv-mode="edit"] {
 	box-shadow: none !important;
 }
