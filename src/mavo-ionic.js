@@ -67,6 +67,11 @@
 			extend: "formControl",
 			selector: "ion-segment",
 			changeEvents: "ionChange"
+		},
+
+		"ion-img": {
+			extend: "media",
+			selector: "ion-img"
 		}
 	});
 })(Bliss, Bliss.$$);
