@@ -54,12 +54,6 @@
 			extend: "checkbox",
 			selector: "ion-checkbox",
 			changeEvents: "ionChange",
-			init: () => {}
-		},
-
-		"ion-toggle": {
-			extend: "ion-checkbox",
-			selector: "ion-toggle",
 			init: element => {
 				if (element.hasAttribute("checked")) {
 					$.properties(element, {
@@ -67,6 +61,11 @@
 					});
 				}
 			}
+		},
+
+		"ion-toggle": {
+			extend: "ion-checkbox",
+			selector: "ion-toggle"
 		},
 
 		"ion-radio-group": {
