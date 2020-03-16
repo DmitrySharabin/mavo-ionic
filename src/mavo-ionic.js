@@ -63,6 +63,13 @@
 			changeEvents: "ionChange"
 		},
 
+		"ion-select": {
+			extend: "select",
+			selector: "ion-select",
+			changeEvents: "ionChange",
+			init: () => {}
+		},
+
 		"ion-segment": {
 			extend: "formControl",
 			selector: "ion-segment",

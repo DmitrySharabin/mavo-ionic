@@ -27,6 +27,25 @@
 	<body>
 		<h1>Ionic Tests</h1>
 
+		<script type="application/json" id="countries">
+			{
+				"country": [
+					{
+						"code": "",
+						"name": "Online"
+					},
+					{
+						"code": "us",
+						"name": "United States"
+					},
+					{
+						"code": "gb",
+						"name": "United Kingdom"
+					}
+				]
+			}
+		</script>
+
 		<section mv-app="exposed">
 			<h1>Form values, get</h1>
 
@@ -44,6 +63,52 @@
 					</td>
 					<td>[number]</td>
 					<td>10</td>
+				</tr>
+				<tr title="Select without value">
+					<td>
+						<ion-select property="country1" placeholder="Choose country">
+							<ion-select-option value="us">United States</ion-select-option>
+							<ion-select-option value="gb">United Kingdom</ion-select-option>
+							<ion-select-option value="jp">Japan</ion-select-option>
+						</ion-select>
+					</td>
+					<td>[country1]</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr title="Select with predefined value">
+					<td>
+						<ion-select
+							property="country2"
+							placeholder="Choose country"
+							value="jp"
+						>
+							<ion-select-option value="us">United States</ion-select-option>
+							<ion-select-option value="gb">United Kingdom</ion-select-option>
+							<ion-select-option value="jp">Japan</ion-select-option>
+						</ion-select>
+					</td>
+					<td>[country2]</td>
+					<td>jp</td>
+				</tr>
+				<tr title="Dynamic select">
+					<td>
+						<ion-select property="select" id="select" value="1"></ion-select>
+						<script>
+							$.ready().then(function() {
+								const select = $("#select");
+
+								if (select) {
+									for (let i = 1; i < 5; i++) {
+										select.appendChild(
+											$.create("ion-select-option", { contents: i })
+										);
+									}
+								}
+							});
+						</script>
+					</td>
+					<td>[select]</td>
+					<td>1</td>
 				</tr>
 				<tr>
 					<td>
@@ -169,7 +234,7 @@
 						"mv-change",
 						Mavo.rr(function(evt) {
 							requestAnimationFrame(function() {
-								let controls = $$("ion-input", tr);
+								let controls = $$("ion-input, ion-select", tr);
 								td.textContent = controls
 									.map(i => i.getAttribute("value"))
 									.join(" ");
@@ -230,6 +295,36 @@
 					</td>
 					<td>
 						750 450
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-select property="foo4" value="[5 + 5]">
+							<ion-select-option value="1">One</ion-select-option>
+							<ion-select-option value="10">Ten</ion-select-option>
+						</ion-select>
+					</td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>
+						10
+					</td>
+				</tr>
+				<tr title="Populating a &lt;select> which is also a property">
+					<td>
+						<ion-select property id="prop1" value="1">
+							<ion-select-option
+								mv-multiple
+								mv-value="[1, 2, 3, 4]"
+							></ion-select-option>
+						</ion-select>
+					</td>
+					<td>[prop1]</td>
+					<td>
+						1
 					</td>
 				</tr>
 			</table>
@@ -397,6 +492,34 @@
 					</td>
 					<td>[prop8]</td>
 					<td>Type here</td>
+				</tr>
+			</table>
+		</section>
+
+		<section mv-app mv-source="#countries">
+			<h1>Broad references</h1>
+
+			<table class="reftest">
+				<tr>
+					<td>
+						<ion-select>
+							<ion-select-option
+								value="[code]"
+								property="country"
+								mv-multiple
+								typeof
+							>
+								[name]
+							</ion-select-option>
+						</ion-select>
+					</td>
+					<td>
+						<ion-select>
+							<ion-select-option value="">Online</ion-select-option>
+							<ion-select-option value="us">United States</ion-select-option>
+							<ion-select-option value="gb">United Kingdom</ion-select-option>
+						</ion-select>
+					</td>
 				</tr>
 			</table>
 		</section>
