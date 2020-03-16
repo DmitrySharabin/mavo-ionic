@@ -57,6 +57,18 @@
 			init: () => {}
 		},
 
+		"ion-toggle": {
+			extend: "ion-checkbox",
+			selector: "ion-toggle",
+			init: element => {
+				if (element.hasAttribute("checked")) {
+					$.properties(element, {
+						checked: element.getAttribute("checked") || true
+					});
+				}
+			}
+		},
+
 		"ion-radio-group": {
 			extend: "formControl",
 			selector: "ion-radio-group",
