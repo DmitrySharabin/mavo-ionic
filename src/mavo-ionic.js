@@ -81,6 +81,19 @@
 			init: () => {}
 		},
 
+		"ion-range": {
+			extend: "formNumber",
+			selector: "ion-range:not([dual-knobs])",
+			changeEvents: "ionChange",
+			init: element => {
+				if (!element.hasAttribute("value")) {
+					$.properties(element, {
+						value: 0
+					});
+				}
+			}
+		},
+
 		"ion-segment": {
 			extend: "formControl",
 			selector: "ion-segment",

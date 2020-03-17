@@ -64,6 +64,11 @@
 					<td>[number]</td>
 					<td>10</td>
 				</tr>
+				<tr>
+					<td><ion-range property="strength"></ion-range></td>
+					<td>[strength]</td>
+					<td>0</td>
+				</tr>
 				<tr title="Select without value">
 					<td>
 						<ion-select property="country1" placeholder="Choose country">
@@ -248,7 +253,7 @@
 						"mv-change",
 						Mavo.rr(function(evt) {
 							requestAnimationFrame(function() {
-								let controls = $$("ion-input, ion-select", tr);
+								let controls = $$("ion-input, ion-select, ion-range", tr);
 								td.textContent = controls
 									.map(i => i.getAttribute("value"))
 									.join(" ");
@@ -339,6 +344,58 @@
 					<td>[prop1]</td>
 					<td>
 						1
+					</td>
+				</tr>
+				<tr>
+					<td><ion-range property="foo5" value="[5 + 5]"></ion-range></td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>
+						<ion-range
+							property="foo6"
+							max="[500 * 2]"
+							value="[250 * 2]"
+						></ion-range>
+					</td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>500</td>
+				</tr>
+				<tr title="Via mv-value on parent">
+					<td>
+						<div
+							property="foo7"
+							mv-multiple
+							mv-value="[
+								{max: 800, value: 750},
+								{max: 900}
+							]"
+						>
+							<ion-range
+								property="value"
+								min="0"
+								max="[max]"
+								mv-default="[max / 2]"
+							></ion-range>
+							[value]
+						</div>
+					</td>
+					<td>
+						<script>
+							testFormGet(document.currentScript);
+						</script>
+					</td>
+					<td>
+						750 450
 					</td>
 				</tr>
 			</table>
