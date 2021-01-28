@@ -86,11 +86,17 @@
 			selector: "ion-range:not([dual-knobs])",
 			changeEvents: "ionChange",
 			init: element => {
+				const min = +element.getAttribute("min") || 0;
+				const max = +element.getAttribute("max") || 100;
+
 				if (!element.hasAttribute("value")) {
 					$.properties(element, {
-						value: 0
+						value: Mavo.Functions.min(min, max, 0)
 					});
 				}
+
+				element.setAttribute("min", Mavo.Functions.min(min, element.value));
+				element.setAttribute("max", Mavo.Functions.max(max, element.value));
 			}
 		},
 
